@@ -1,0 +1,19 @@
+{
+    "path-autocomplete.pathMappings": {
+        "@": "${folder}/app"
+    },
+    "git.postCommitCommand": "push",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "files.eol": "\n",
+    "javascript.validate.enable": false,
+    "eslint.validate": [
+        "vue",
+        "html",
+        "javascript",
+        "javascriptreact"
+    ],
+    "debug.node.autoAttach": "on"
+}

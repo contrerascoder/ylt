@@ -1,0 +1,9 @@
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/testtemplate","level":"info"}
+{"message":"Hubo un error configurando la aplicacion - Cannot find module 'cookie-parser'","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/testtemplate","level":"info"}
+{"message":"Escuchando por el puerto undefined","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/testtemplate","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/testtemplate","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/testtemplate","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
