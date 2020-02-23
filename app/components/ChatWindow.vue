@@ -69,9 +69,6 @@ export default {
                 data: {
                     message: this.fields.message.value,
                 },
-                headers: {
-                    authorization: this.token,
-                },
             }
         },
     },

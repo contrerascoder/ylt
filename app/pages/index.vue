@@ -1,5 +1,5 @@
 <template>
-  <GuestUser :url="'/chat'">
+  <guest-user :url="'/chat'">
     <div class="card">
       <template v-if="signining">
         <h2>Accede al chat</h2><form-login /><div class="flex-centered">
@@ -18,19 +18,28 @@
         </div>
       </template>
     </div>
-  </GuestUser>
+  </guest-user>
 </template>
 <script>
 import FormLogin from "@/components/FormLogin"
 import FormRegister from "@/components/FormRegister"
-import GuestUser from "@/components/ui/guest-user"
 
 export default {
-    components: {FormLogin, FormRegister, GuestUser},
+    components: {FormLogin, FormRegister},
     data() {
         return {
             name: `raul`,
             signining: true,
+        }
+    },
+    mounted() {
+        this.configBar(`Bienvenido`, [
+            {handler: this.logout, text: `Cerrar sesion`},
+        ])
+    },
+    head() {
+        return {
+            title: `Bienvenido`,
         }
     },
 }

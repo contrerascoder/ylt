@@ -15,12 +15,9 @@
   </vue-form>
 </template>
 <script>
-import FormField from './ui/vue-form-field'
-import VueForm from './ui/vue-form'
 import FormMixin from '@/mixins/form'
 import {mapFields} from "vuex-map-fields"
 export default {
-    components: {FormField, VueForm},
     mixins: [FormMixin],
     data() {
         return {
@@ -56,6 +53,7 @@ export default {
     },
     methods: {
         postSuccess(data) {
+            this.$api.setHeader(`authorization`, data.token)
             this.resetForm()
             this.token = data.token
         },

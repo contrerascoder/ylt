@@ -25,10 +25,7 @@
 
 <script>
 import FormMixin from '@/mixins/form'
-import VueForm from './ui/vue-form'
-import FormField from './ui/vue-form-field.vue'
 export default {
-    components: {VueForm, FormField},
     mixins: [FormMixin],
     data() {
         return {

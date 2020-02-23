@@ -14,5 +14,22 @@ export default {
     computed: {
         ...mapFields(`auth`, [`token`]),
     },
+    mounted() {
+        this.configBar(`Mensajes`, [
+            {handler: this.logout, text: `Cerrar sesion`},
+        ])
+    },
+    methods: {
+        logout(cb) {
+            this.token=``
+            this.$api.setHeader(`authorization`, ``)
+            cb()
+        },
+    },
+    head() {
+        return {
+            title: `Mensajes`,
+        }
+    },
 }
 </script>

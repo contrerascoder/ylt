@@ -21,6 +21,7 @@ module.exports = {
         baseUrl: `http://localhost:8080/api`,
     },
     plugins: [
+        `~/plugins/global.js`,
         `~/plugins/axios.js`,
         `~/plugins/injectEnv.js`,
         {src: `~/plugins/localstorage.js`, ssr: false},

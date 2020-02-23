@@ -15,9 +15,7 @@
 
 <script>
 import {mapState} from "vuex"
-import Redirect from './redirect'
 export default {
-    components: {Redirect},
     props: {
         url: {
             type: String,

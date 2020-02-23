@@ -11,14 +11,7 @@
           class="logo"
           href="#"
         />
-        Sin tituloo
-        <a
-          v-if="token"
-          id="menu-open"
-          class="header__nav-open"
-          href="#"
-          @click="token=''"
-        ><i class="fas fa-bars" /></a>
+        {{ title }}
       </h1>
       <nav
         id="menu"
@@ -29,16 +22,15 @@
           class="header__nav-close"
           href="#"
           @click="showingMenu=false"
-        ><i class="fas fa-times-circle" /></a><a
-          class="header__link active"
-          href="/home"
-        >Home</a><a
+        ><i class="fas fa-times-circle" /></a>
+        <a
+          v-for="(button, index) in menu"
+          id="menu-close"
+          :key="index"
           class="header__link"
-          href="/contact"
-        >Contact</a><a
-          class="header__link"
-          href="/about"
-        >About</a>
+          href="#"
+          @click="() => button.handler(() => showingMenu = false)"
+        >{{ button.text }}</a>
       </nav>
     </header>
     <main class="main-container">
@@ -48,6 +40,7 @@
 </template>
 
 <script>
+import {mapState} from "vuex"
 import {mapFields} from "vuex-map-fields"
 export default {
     data() {
@@ -56,12 +49,19 @@ export default {
         }
     },
     computed: {
+        ...mapState([`title`, `menu`]),
         ...mapFields(`auth`, [`token`]),
         menuClasses() {
             return {
                 header__right: true,
                 active: this.showingMenu,
             }
+        },
+    },
+    methods: {
+        logout() {
+            this.token=``
+            this.$api.setHeader(`authorization`, ``)
         },
     },
 }
