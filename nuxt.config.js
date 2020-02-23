@@ -23,6 +23,7 @@ module.exports = {
     plugins: [
         `~/plugins/axios.js`,
         `~/plugins/injectEnv.js`,
+        {src: `~/plugins/localstorage.js`, ssr: false},
     ],
     proxy: {
         '/api/': `http://api.example.com`,

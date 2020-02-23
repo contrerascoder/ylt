@@ -31,8 +31,7 @@ module.exports = {
         try {
             const access = await login(req.body.email, req.body.password)
             const token = await createToken(access)
-            res.cookie(`token`, token, {maxAge: 600000})
-            res.status(statusHttp.OK).json({message: `Has accedido correctamente`})
+            res.status(statusHttp.OK).json({message: `Has accedido correctamente`, token: token})
         } catch (error) {
             res.status(statusHttp.BAD_REQUEST).json({message: error.message})
         }

@@ -60,7 +60,7 @@ export default {
                     try {
                         this.status = r.status
                         this.message = r.data.message
-                        this.$emit(`success`)
+                        this.$emit(`success`, r.data)
                     } catch (error) {
 
                     }

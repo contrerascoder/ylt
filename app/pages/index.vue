@@ -1,32 +1,32 @@
 <template>
-  <div class="card">
-    <template v-if="signining">
-      <h2>Accede al chat</h2><form-login /><div class="flex-centered">
-        <a
-          class="button clear"
-          @click="signining = false"
-        >Registrarse</a>
-      </div>
-    </template>
-    <template v-else>
-      <h2>Registrate</h2><form-register @registered="signining = true" /><div class="flex-centered">
-        <a
-          class="button clear"
-          @click="signining = true"
-        >Acceder</a>
-      </div>
-    </template>
-  </div>
+  <GuestUser :url="'/chat'">
+    <div class="card">
+      <template v-if="signining">
+        <h2>Accede al chat</h2><form-login /><div class="flex-centered">
+          <a
+            class="button clear"
+            @click="signining = false"
+          >Registrarse</a>
+        </div>
+      </template>
+      <template v-else>
+        <h2>Registrate</h2><form-register @registered="signining = true" /><div class="flex-centered">
+          <a
+            class="button clear"
+            @click="signining = true"
+          >Acceder</a>
+        </div>
+      </template>
+    </div>
+  </GuestUser>
 </template>
 <script>
 import FormLogin from "@/components/FormLogin"
 import FormRegister from "@/components/FormRegister"
+import GuestUser from "@/components/ui/guest-user"
 
 export default {
-    components: {
-        'form-login': FormLogin,
-        'form-register': FormRegister,
-    },
+    components: {FormLogin, FormRegister, GuestUser},
     data() {
         return {
             name: `raul`,

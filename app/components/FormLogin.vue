@@ -1,7 +1,7 @@
 <template>
   <vue-form
     :payload="request"
-    @success="() => resetForm() && postSuccess()"
+    @success="postSuccess"
     @notvalid="printErrors"
   >
     <form-field
@@ -18,7 +18,7 @@
 import FormField from './ui/vue-form-field'
 import VueForm from './ui/vue-form'
 import FormMixin from '@/mixins/form'
-
+import {mapFields} from "vuex-map-fields"
 export default {
     components: {FormField, VueForm},
     mixins: [FormMixin],
@@ -41,6 +41,7 @@ export default {
         }
     },
     computed: {
+        ...mapFields(`auth`, [`token`]),
         request() {
             const data = {
                 email: this.fields.email.value,
@@ -54,8 +55,9 @@ export default {
         },
     },
     methods: {
-        postSuccess() {
-            window.location.href = `/chat`
+        postSuccess(data) {
+            this.resetForm()
+            this.token = data.token
         },
     },
 }
