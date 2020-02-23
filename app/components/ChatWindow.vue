@@ -65,9 +65,12 @@ export default {
         request() {
             return {
                 method: `post`,
-                url: `/api/chat`,
+                url: `/chat`,
                 data: {
                     message: this.fields.message.value,
+                },
+                headers: {
+                    authorization: this.token,
                 },
             }
         },

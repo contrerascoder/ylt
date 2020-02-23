@@ -27,6 +27,8 @@ module.exports = {
      */
     async postMessage(req, res, next) {
         try {
+            console.log(`creando mensaje`, req.body)
+
             const message = await sendMessage(req.user, req.body.message)
             event.emit(NEW_MESSAGE, message)
             res.status(statusHttp.OK).json({message})
