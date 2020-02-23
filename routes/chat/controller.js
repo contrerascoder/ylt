@@ -11,10 +11,9 @@ module.exports = {
     */
     async getChatApp(req, res) {
         try {
-            res.render(`pages/chat/index`, {
-                title: `Mensajes`,
-                messages: await getLast20Message(),
-            })
+            console.log(`getting messages`)
+
+            res.status(200).json({messages: await getLast20Message()})
         } catch (error) {
             res.status(statusHttp.BAD_REQUEST).json({message: error.message})
         }

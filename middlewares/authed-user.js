@@ -11,11 +11,11 @@ const {decodeUserByToken} = require(`../models/credentials/`)
 */
 module.exports = async function authedUser(req, res, next) {
     try {
-        if (req.cookies.token) {
-            req.user = await decodeUserByToken(req.cookies.token)
+        if (req.headers.authorization) {
+            req.user = await decodeUserByToken(req.headers.authorization)
             next()
         } else {
-            res.redirect(`/`)
+            res.status(statusHttp.FORBIDDEN).end(`Neceistas autenticarte`)
         }
     } catch (error) {
         console.log(error)

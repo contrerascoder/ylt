@@ -11,7 +11,7 @@ const statusHttp = require(`http-status`)
 module.exports = async function guestUser(req, res, next) {
     try {
         if (req.headers.authorization) {
-            res.redirect(`/chat`)
+            res.status(statusHttp.FORBIDDEN).end(`Ya has accedido al sistema`)
         } else {
             next()
         }
