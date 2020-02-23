@@ -80,12 +80,10 @@ export default {
             },
         })
         this.messages = messagesRequest.data.messages
-
-        /*
-        this.socket.on(NEW_MESSAGE, (data) => {
+        this.$socket.on(NEW_MESSAGE, (data) => {
             this.messages.push(data)
             window.scrollTo(0, document.body.scrollHeight)
-        })*/
+        })
     },
     methods: {
         resetForm() {

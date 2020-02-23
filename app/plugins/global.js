@@ -14,7 +14,7 @@ Vue.component(`redirect`, Redirect)
 
 Vue.mixin({
     methods: {
-        configBar(title, menuButtons) {
+        configBar(title, menuButtons = []) {
             this.$store.commit(`setBar`, {title, menu: menuButtons})
         },
     },

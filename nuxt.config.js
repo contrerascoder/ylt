@@ -1,3 +1,4 @@
+const serverUrl = `http://localhost:8080`
 module.exports = {
     rootDir: `./app`,
     modules: [`@nuxtjs/axios`],
@@ -5,6 +6,9 @@ module.exports = {
         titleTemplate: `%s - Nuxt.js`,
         link: [
             {rel: `stylesheet`, href: `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css`},
+        ],
+        script: [
+            {src: `${serverUrl}/socket.io/socket.io.js`},
         ],
         meta: [
             {charset: `utf-8`},
@@ -18,12 +22,14 @@ module.exports = {
         proxy: true, // Can be also an object with default options
     },
     env: {
-        baseUrl: `http://localhost:8080/api`,
+        baseUrl: `${serverUrl}/api`,
+        socketUrl: serverUrl,
     },
     plugins: [
         `~/plugins/global.js`,
         `~/plugins/axios.js`,
         `~/plugins/injectEnv.js`,
+        {src: `~/plugins/socket.js`, ssr: false},
         {src: `~/plugins/localstorage.js`, ssr: false},
     ],
     proxy: {
