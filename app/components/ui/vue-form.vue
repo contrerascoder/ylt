@@ -55,10 +55,7 @@ export default {
             return errorsFormatted
         },
         sendRequest() {
-            console.log(this.$api)
-
-            /*
-            this.$axios(this.payload)
+            this.$api(this.payload)
                 .then((r) => {
                     try {
                         this.status = r.status
@@ -79,7 +76,7 @@ export default {
                     } catch (error) {
 
                     }
-                })*/
+                })
         },
     },
 }

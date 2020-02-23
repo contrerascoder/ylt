@@ -21,6 +21,7 @@
 <script>
 import FormLogin from "@/components/FormLogin"
 import FormRegister from "@/components/FormRegister"
+
 export default {
     components: {
         'form-login': FormLogin,

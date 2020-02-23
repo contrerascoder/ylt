@@ -1,14 +1,14 @@
 const express = require(`express`)
-const routes = require(`../routes`)
+const routers = require(`../routes`)
 
 const app = express()
 
+app.use((req, res, next) => {
+    console.log(`En app`, req.path)
+    next()
+})
+
 app.use(require(`../middlewares/index.js`))
-for (const path in routes) {
-    if (routes.hasOwnProperty(path)) {
-        const route = routes[path]
-        app.use(path, route)
-    }
-}
+app.use(`/api`, routers)
 
 module.exports = app

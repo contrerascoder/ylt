@@ -9,9 +9,7 @@ module.exports = {
     */
     welcomeUser(req, res) {
         try {
-            res.render(`pages/home/index`, {
-                title: `Accede al sistema`,
-            })
+            res.end(`hola desde welcome`)
         } catch (error) {
             res.status(statusHttp.INTERNAL_SERVER_ERROR).end(`Hubo un error interno`)
         }

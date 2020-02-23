@@ -1,13 +1,3 @@
-const ENV = process.env.NODE_ENV || `production`
-console.log(process.env.NODE_ENV)
-
-const envPath = require(`path`).resolve(__dirname, `environment/${ENV}.env`)
-
-require(`dotenv`).config({
-    path: envPath,
-})
-console.log(envPath, process.env)
-
 module.exports = {
     rootDir: `./app`,
     modules: [`@nuxtjs/axios`],
@@ -28,7 +18,7 @@ module.exports = {
         proxy: true, // Can be also an object with default options
     },
     env: {
-        baseUrl: process.env.BASE_URL,
+        baseUrl: `http://localhost:8080/api`,
     },
     plugins: [
         `~/plugins/axios.js`,
