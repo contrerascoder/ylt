@@ -12,6 +12,13 @@
           href="#"
         />
         Sin tituloo
+        <a
+          v-if="token"
+          id="menu-open"
+          class="header__nav-open"
+          href="#"
+          @click="token=''"
+        ><i class="fas fa-bars" /></a>
       </h1>
       <nav
         id="menu"
@@ -41,6 +48,7 @@
 </template>
 
 <script>
+import {mapFields} from "vuex-map-fields"
 export default {
     data() {
         return {
@@ -48,6 +56,7 @@ export default {
         }
     },
     computed: {
+        ...mapFields(`auth`, [`token`]),
         menuClasses() {
             return {
                 header__right: true,
