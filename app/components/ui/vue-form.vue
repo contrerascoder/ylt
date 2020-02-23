@@ -72,9 +72,10 @@ export default {
                             this.$emit(`notvalid`, this.formatErrors(response.data))
                         } else if (response.status === 404) {
                             this.message = `Pagina no encontrada`
-                        } else {}
+                        } else {
+                            this.$emit(`error`, response)
+                        }
                     } catch (error) {
-
                     }
                 })
         },

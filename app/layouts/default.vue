@@ -81,8 +81,12 @@ input[type="text"], textarea {
     font-family: 'Space Mono', monospace;
 }
 .main-container {
-    margin: 0px 10px;
+    margin: 10px 10px;
     margin-top: 10px;
+    max-width: 1024px;
+    @media screen and (min-width: 768px) {
+        margin: 10px auto;
+    }
 }
 
 .button {
@@ -117,24 +121,33 @@ input[type="text"], textarea {
     background-color: #f1f1f1;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     &__right {
-        position: absolute;
-        top: -100vh;
-        right: 0px;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.75);
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding-top: 40px;
-        transition: all .5s;
+        @media screen and (max-width: 425px) {
+            position: absolute;
+            top: -100vh;
+            right: 0px;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            padding-top: 40px;
+            transition: all .5s;
+        }
+        @media screen and (min-width: 768px) {
+            position: static;
+        }
         &.active {
             top: 0vh;
         }
     }
     &__link {
-        font-size: 1.5em;
-        color: white;
+        @media screen and (max-width: 425px) {
+            color: white;
+            font-size: 1.5em;
+        }
+        color: black;
+        font-size: 1.3em;
         font-weight: bold;
         display: inline-block;
         padding: 5px;
@@ -157,6 +170,11 @@ input[type="text"], textarea {
             right: 10px;
             font-size: 1.4em;
             color: white;
+        }
+        &-open, &-close {
+            @media screen and (min-width: 768px) {
+                display: none;
+            }
         }
     }
 }

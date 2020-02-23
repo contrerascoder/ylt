@@ -19,6 +19,7 @@
         :payload="request"
         @success="postSuccess"
         @notvalid="printErrors"
+        @error="handleError"
       >
         <template slot="sended">
           <span />
@@ -92,6 +93,11 @@ export default {
         postSuccess(data) {
             this.resetForm()
         },
+        handleError(r) {
+            if (r.status === 403) {
+                alert(`Vuelvete a loguear`)
+            }
+        },
     },
 }
 </script>
@@ -105,6 +111,7 @@ export default {
         bottom: 10px;
         background: white;
         margin: 0px;
+        background: rgb(202, 217, 230);
     }
     &__messages {
         padding-bottom: 20em;
