@@ -10,12 +10,14 @@ const statusHttp = require(`http-status`)
 */
 module.exports = async function guestUser(req, res, next) {
     try {
-        if (req.cookies.token) {
+        if (req.headers.authorization) {
             res.redirect(`/chat`)
         } else {
             next()
         }
     } catch (error) {
+        console.log(error)
+
         res.status(statusHttp.BAD_REQUEST).json({message: error.message})
     }
 }

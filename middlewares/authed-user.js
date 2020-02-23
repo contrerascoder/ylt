@@ -18,6 +18,8 @@ module.exports = async function authedUser(req, res, next) {
             res.redirect(`/`)
         }
     } catch (error) {
+        console.log(error)
+
         res.status(statusHttp.BAD_REQUEST).json({message: error.message})
     }
 }
