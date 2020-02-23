@@ -9,5 +9,6 @@ router.use(guestUser)
 
 router.post(`/signup`, validators.signup, controller.signUp)
 router.post(`/signin`, validators.login, controller.signin)
+router.get(`/activate/:id`, controller.activate)
 
 module.exports = router

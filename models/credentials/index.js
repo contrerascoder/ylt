@@ -2,15 +2,22 @@ const bcrypt = require(`bcrypt`)
 const {SALTS, SECRET_KEY} = require(`../../config/vars`)
 const jsonwebtoken = require(`jsonwebtoken`)
 const modelName = `credentials`
+const sendMail = require(`../../utilities/send-mail`)
+const {PORT} = require(`../../config/vars`)
 
 const model = require(`..`)(modelName, {
     email: {type: String},
     password: {type: String},
+    activated: {type: Boolean, default: false},
 })
 
 module.exports = {
     modelName: modelName,
-    async register({name, surname, password, email}) {
+    async activateAccount(uuid) {
+        console.log(`uuid user`, uuid)
+        await model.findOneAndUpdate({uuid: uuid}, {activated: true})
+    },
+    async register({name, surname, password, email}, {hostname}) {
         const user = await searchUserByEmail(email)
         if (user) {
             throw new Error(`El email ya está registrado`)
@@ -19,6 +26,8 @@ module.exports = {
             email: email,
             password: await hashPassword(password),
         })
+        const html = `Para activar tu cuenta tienes que hacer click <a href="http://${hostname}:${PORT}/api/auth/activate/${credentials.uuid}">aqui</a>`
+        await sendMail(credentials.email, `Activa tu cuenta`, html)
         return await require(`../user/`).model.create({
             name: name,
             surname: surname,
@@ -32,6 +41,9 @@ module.exports = {
         }
         if ( !(await comparePassword(password, credentials.password)) ) {
             throw new Error(`credenciales incorrectas`)
+        }
+        if (!credentials.activated) {
+            throw new Error(`Tienes que activar tu usuario`)
         }
         return await recoverUserByCredentials(credentials)
     },
