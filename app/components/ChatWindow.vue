@@ -95,3 +95,19 @@ export default {
     },
 }
 </script>
+
+<style lang="scss">
+.chat {
+    &__form {
+        position: fixed;
+        right: 10px;
+        left: 10px;
+        bottom: 10px;
+        background: white;
+        margin: 0px;
+    }
+    &__messages {
+        padding-bottom: 20em;
+    }
+}
+</style>
