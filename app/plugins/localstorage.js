@@ -6,5 +6,6 @@ export default ({store}) => {
             key: `vuexstore`,
             paths: [`auth`],
         })(store)
+        store.commit(`loaded`, true)
     })
 }
