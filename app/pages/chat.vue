@@ -6,24 +6,19 @@
 
 <script>
 import ChatWindow from "@/components/ChatWindow"
-import {mapFields} from "vuex-map-fields"
 import AuthedUser from '@/components/ui/authed-user'
 
 export default {
-    components: {ChatWindow, AuthedUser},
-    computed: {
-        ...mapFields(`auth`, [`token`]),
-    },
+    components: {AuthedUser, ChatWindow},
     mounted() {
         this.configBar(`Mensajes`, [
             {handler: this.logout, text: `Cerrar sesion`},
+            {handler: this.goToProfile, text: `Ir al perfil`},
         ])
     },
     methods: {
-        logout(cb) {
-            this.token=``
-            this.$api.setHeader(`authorization`, ``)
-            cb()
+        goToProfile() {
+            this.$router.push(`/profile`)
         },
     },
     head() {

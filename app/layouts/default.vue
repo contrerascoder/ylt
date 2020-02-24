@@ -136,6 +136,7 @@ input[type="text"], textarea {
         }
         @media screen and (min-width: 768px) {
             position: static;
+            flex-direction: row-reverse;
         }
         &.active {
             top: 0vh;

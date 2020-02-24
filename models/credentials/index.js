@@ -1,5 +1,5 @@
 const bcrypt = require(`bcrypt`)
-const {SALTS, SECRET_KEY} = require(`../../config/vars`)
+const {SALTS, SECRET_KEY, IS_PROD} = require(`../../config/vars`)
 const jsonwebtoken = require(`jsonwebtoken`)
 const modelName = `credentials`
 const sendMail = require(`../../utilities/send-mail`)
@@ -42,7 +42,7 @@ module.exports = {
         if ( !(await comparePassword(password, credentials.password)) ) {
             throw new Error(`credenciales incorrectas`)
         }
-        if (!credentials.activated) {
+        if (IS_PROD && !credentials.activated) {
             throw new Error(`Tienes que activar tu usuario`)
         }
         return await recoverUserByCredentials(credentials)
@@ -53,6 +53,12 @@ module.exports = {
     async decodeUserByToken(token) {
         const payload = jsonwebtoken.verify(token, SECRET_KEY)
         return await require(`../user/`).model.findById(payload._doc._id).populate(`credentials`)
+    },
+    async recoverUserFromEmail(email) {
+        const credentials = await model.findOne({email: email})
+        console.log(credentials)
+
+        return await require(`../user/`).model.findOne({credentials: credentials})
     },
 }
 

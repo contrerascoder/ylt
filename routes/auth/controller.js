@@ -1,7 +1,7 @@
 const express = require(`express`) // eslint-disable-line
 const statusHttp = require(`http-status`)
 const logger = require(`../../utilities/logger.js`)
-const {register, login, createToken, activateAccount} = require(`../../models/credentials/`)
+const {register, login, createToken, activateAccount, recoverUserFromEmail} = require(`../../models/credentials/`)
 
 
 module.exports = {
@@ -50,7 +50,11 @@ module.exports = {
         try {
             const access = await login(req.body.email, req.body.password)
             const token = await createToken(access)
-            res.status(statusHttp.OK).json({message: `Has accedido correctamente`, token: token})
+            res.status(statusHttp.OK).json({
+                message: `Has accedido correctamente`,
+                token: token,
+                userInfo: await recoverUserFromEmail(req.body.email),
+            })
         } catch (error) {
             res.status(statusHttp.BAD_REQUEST).json({message: error.message})
         }

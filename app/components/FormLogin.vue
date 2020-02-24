@@ -38,7 +38,6 @@ export default {
         }
     },
     computed: {
-        ...mapFields(`auth`, [`token`]),
         request() {
             const data = {
                 email: this.fields.email.value,
@@ -52,10 +51,11 @@ export default {
         },
     },
     methods: {
-        postSuccess(data) {
+        async postSuccess(data) {
             this.$api.setHeader(`authorization`, data.token)
-            this.resetForm()
+            this.user = data.userInfo
             this.token = data.token
+            this.resetForm()
         },
     },
 }
