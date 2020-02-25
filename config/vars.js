@@ -1,9 +1,15 @@
 const path = require(`path`)
 
 const ENV = process.env.NODE_ENV || `development`
+const envPath = path.resolve(__dirname, `../environment/${ENV}.env`)
+
+console.log(process.env.NODE_ENV)
+console.log(`leyendo del envpath ${envPath}`)
+
+
 const IS_PROD = ENV === `production`
-!IS_PROD && require(`dotenv`).config({
-    path: path.resolve(__dirname, `../environment/${ENV}.env`),
+require(`dotenv`).config({
+    path: envPath,
 })
 
 module.exports = {
@@ -19,3 +25,5 @@ module.exports = {
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET_KEY: process.env.CLOUDINARY_API_SECRET_KEY,
 }
+
+console.log(module.exports)
