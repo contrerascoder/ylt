@@ -14,7 +14,6 @@ const model = require(`..`)(modelName, {
 module.exports = {
     modelName: modelName,
     async activateAccount(uuid) {
-        console.log(`uuid user`, uuid)
         await model.findOneAndUpdate({uuid: uuid}, {activated: true})
     },
     async register({name, surname, password, email}, {hostname}) {
@@ -56,8 +55,6 @@ module.exports = {
     },
     async recoverUserFromEmail(email) {
         const credentials = await model.findOne({email: email})
-        console.log(credentials)
-
         return await require(`../user/`).model.findOne({credentials: credentials})
     },
 }

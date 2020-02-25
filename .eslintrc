@@ -30,7 +30,7 @@
         "semi": ["error", "never"],
         "indent": ["error", 4],
         "quotes": ["error", "backtick"],
-        "no-console": ["warn"],
+        "no-console": ["error"],
         "max-len": "off",
         "no-undef": ["error"],
         "linebreak-style": "off",

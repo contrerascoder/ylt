@@ -19,7 +19,6 @@
 
 <script>
 import VueCropper from 'vue-cropperjs'
-import axios from 'axios'
 import 'cropperjs/dist/cropper.css'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
@@ -75,7 +74,7 @@ export default {
             this.$api.post(`/user/avatar/de7a6f96-0548-4d03-9431-5d1fee66e547`, fd).then((r) => {
                 this.$emit(`changedAvatar`, r.data)
             }).catch((err) => {
-                console.log(err)
+                alert(err.message)
             })
         },
         flipX() {

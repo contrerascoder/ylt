@@ -20,15 +20,11 @@ export default {
         }
     },
     mounted() {
-        console.log(`redirecting`)
-
         this.timer = setTimeout(() => {
             this.$router.push(this.url)
         }, this.ms)
     },
     beforeDestroy() {
-        console.log(`destruyendo timer`)
-
         clearTimeout(this.timer)
     },
 }

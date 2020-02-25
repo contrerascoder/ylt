@@ -16,7 +16,6 @@
 </template>
 <script>
 import FormMixin from '@/mixins/form'
-import {mapFields} from "vuex-map-fields"
 export default {
     mixins: [FormMixin],
     data() {

@@ -4,7 +4,6 @@ const routers = require(`../routes`)
 const app = express()
 
 app.use((req, res, next) => {
-    console.log(`En app`, req.path)
     next()
 })
 

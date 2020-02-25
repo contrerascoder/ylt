@@ -4,7 +4,6 @@ const authedUser = require(`../../middlewares/authed-user`)
 const router = new express.Router()
 
 router.get(`/`, (req, res, next) => {
-    console.log(`inchat`)
     next()
 })
 

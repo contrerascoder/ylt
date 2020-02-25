@@ -16,8 +16,6 @@ module.exports = async function guestUser(req, res, next) {
             next()
         }
     } catch (error) {
-        console.log(error)
-
         res.status(statusHttp.BAD_REQUEST).json({message: error.message})
     }
 }

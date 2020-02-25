@@ -18,8 +18,6 @@ module.exports = async function authedUser(req, res, next) {
             res.status(statusHttp.FORBIDDEN).end(`Neceistas autenticarte`)
         }
     } catch (error) {
-        console.log(error)
-
         res.status(statusHttp.BAD_REQUEST).json({message: error.message})
     }
 }

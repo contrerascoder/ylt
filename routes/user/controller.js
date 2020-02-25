@@ -1,3 +1,4 @@
+const logger = require(`../../utilities/logger`)
 const express = require(`express`) // eslint-disable-line
 const uploadAvatar = require(`./upload-avatar`)
 const {setAvatar, model} = require(`../../models/user/`)
@@ -13,8 +14,7 @@ module.exports = {
             await setAvatar(req.params.id, result.url)
             res.status(200).end(result.url)
         } catch (error) {
-            console.log(`error`, error)
-            console.log(`Sucedio un error inesperado ${error.message}`)
+            logger.info(`error ${error.message}`)
         }
     },
 
@@ -27,8 +27,7 @@ module.exports = {
             const user = await model.findOne({email: req.params.email})
             res.status(200).json(user)
         } catch (error) {
-            console.log(error)
-            console.log(`Sucedio un error inesperado ${error.message}`)
+            logger.info(`error ${error.message}`)
         }
     },
 }

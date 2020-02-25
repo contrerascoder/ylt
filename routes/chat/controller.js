@@ -11,8 +11,6 @@ module.exports = {
     */
     async getChatApp(req, res) {
         try {
-            console.log(`getting messages`)
-
             res.status(200).json({messages: await getLast20Message()})
         } catch (error) {
             res.status(statusHttp.BAD_REQUEST).json({message: error.message})
@@ -27,8 +25,6 @@ module.exports = {
      */
     async postMessage(req, res, next) {
         try {
-            console.log(`creando mensaje`, req.body)
-
             const message = await sendMessage(req.user, req.body.message)
             event.emit(NEW_MESSAGE, message)
             res.status(statusHttp.OK).json({message})

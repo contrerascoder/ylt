@@ -12,13 +12,10 @@ module.exports = {
     */
     async activate(req, res) {
         try {
-            console.log(req.params)
-
             await activateAccount(req.params.id)
             return res.redirect(`/`)
         } catch (error) {
-            console.log(error)
-            res.status(statusHttp.BAD_REQUEST).end(error.message)
+            logger.info(`error ${error.message}`)
         }
     },
     /** POST /auth/signup
@@ -34,9 +31,7 @@ module.exports = {
                 user: user,
             })
         } catch (error) {
-            console.log(error)
-
-            logger.info(error.message)
+            logger.info(`error ${error.message}`)
             res.status(statusHttp.BAD_REQUEST).json({message: error.message})
         }
     },

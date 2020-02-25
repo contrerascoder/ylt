@@ -8,8 +8,6 @@ cloudinary.config({
 })
 
 function uploadAvatar(id, file) {
-    console.log(file)
-
     return new Promise(function(resolve, reject) {
         cloudinary.uploader.upload(file.path, {public_id: id}, function(error, result) {
             if (error) {
