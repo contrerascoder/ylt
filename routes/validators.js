@@ -13,9 +13,27 @@ const validators = {
         emailIsValid: check(`email`).isEmail().withMessage(`El correo electrónico no es valido`),
         passwordIsValid: check(`password`).isLength({min: 6}).withMessage(`Esa contraseña no es valida`),
     },
+    course: {
+        titleIsPresent: check(`title`).notEmpty().withMessage(`El titulo es requerido`),
+        titleIsValid: check(`title`).isLength({min: 3}).withMessage(`El titulo no es valido`),
+
+        abbrIsPresent: check(`abbr`).notEmpty().withMessage(`La abreviatura es requerida`),
+        abbrIsValid: check(`abbr`).isLength({min: 3}).withMessage(`La abreviatura no es valida`),
+
+        colorIsPresent: check(`color`).notEmpty().withMessage(`El color es requerido`),
+        colorIsValid: check(`color`).isLength({min: 3}).withMessage(`El color no es valido`),
+    },
 }
 
 module.exports = {
+    courseCreation: createValidator([
+        validators.course.titleIsPresent,
+        validators.course.titleIsValid,
+        validators.course.abbrIsValid,
+        validators.course.abbrIsPresent,
+        validators.course.colorIsValid,
+        validators.course.colorIsPresent,
+    ]),
     signup: createValidator([
         validators.user.nameIsPresent,
         validators.user.nameIsValid,

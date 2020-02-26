@@ -8,6 +8,9 @@ export const mutations = {
     list(state, courses) {
         state.items = courses
     },
+    add(state, course) {
+        state.items.push(course)
+    },
 }
 
 export const actions = {
