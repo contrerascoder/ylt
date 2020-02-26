@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="toolbar">
-      <h2>Listado de asignaturas</h2>
+      <h2>Asignaturas {{ course && course.abbr }}</h2>
       <div>
         <span @click="addingSubject = true"><i class="fas fa-plus" /></span>
         <span @click="editingCourse = true"><i class="fas fa-edit" /></span>
@@ -13,7 +13,6 @@
       :course="course"
       @close="editingCourse=false"
     />
-    {{ course }}
   </div>
 </template>
 

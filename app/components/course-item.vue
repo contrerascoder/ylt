@@ -1,10 +1,15 @@
 <template>
-  <div @click="$emit('choose', course)">
+  <div
+    @click="$emit('choose', course)"
+  >
     <div
       class="course__box"
       :style="'background-color:' + course.color"
     />
-    <h4 class="course__title">
+    <h4
+      :title="course.title"
+      class="course__title"
+    >
       {{ course.abbr }}
     </h4>
   </div>

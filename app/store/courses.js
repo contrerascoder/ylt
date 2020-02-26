@@ -14,10 +14,10 @@ export const mutations = {
     set(state, {id, course}) {
         const courseQueried = state.items.filter((course) => course._id === id)[0]
         const index = state.items.indexOf(courseQueried)
-        state.items[index] = {
+        state.items.splice(index, 1, {
             ...courseQueried,
             ...course,
-        }
+        })
     },
 }
 
