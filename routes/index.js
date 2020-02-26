@@ -8,7 +8,8 @@ router.use((req, res, next) => {
 
 router.use(`/`, require(`./welcome`))
 router.use(`/auth`, require(`./auth`))
-router.use(`/chat`, require(`./chat`))
+// router.use(`/chat`, require(`./chat`))
 router.use(`/user`, require(`./user`))
+router.use(`/courses`, require(`./courses`))
 
 module.exports = router

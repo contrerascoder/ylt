@@ -1,8 +1,10 @@
 <template>
-  <guest-user :url="'/chat'">
+  <guest-user :url="'/private'">
     <div class="card">
       <template v-if="signining">
-        <h2>Accede al chat</h2><form-login /><div class="flex-centered">
+        <h2>Accede a la aplicacion</h2>
+        <form-login />
+        <div class="flex-centered">
           <a
             class="button clear"
             @click="signining = false"
@@ -10,7 +12,9 @@
         </div>
       </template>
       <template v-else>
-        <h2>Registrate</h2><form-register @registered="signining = true" /><div class="flex-centered">
+        <h2>Registrate</h2>
+        <form-register @registered="signining = true" />
+        <div class="flex-centered">
           <a
             class="button clear"
             @click="signining = true"

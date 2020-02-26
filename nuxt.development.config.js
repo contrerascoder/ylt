@@ -8,7 +8,7 @@ module.exports = {
             {rel: `stylesheet`, href: `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css`},
         ],
         script: [
-            {src: `${serverUrl}/socket.io/socket.io.js`},
+            // {src: `${serverUrl}/socket.io/socket.io.js`},
         ],
         meta: [
             {charset: `utf-8`},
@@ -29,7 +29,7 @@ module.exports = {
         `~/plugins/global.js`,
         `~/plugins/axios.js`,
         `~/plugins/injectEnv.js`,
-        {src: `~/plugins/socket.js`, ssr: false},
+        // {src: `~/plugins/socket.js`, ssr: false},
         {src: `~/plugins/localstorage.js`, ssr: false},
     ],
 }

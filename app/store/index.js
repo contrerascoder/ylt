@@ -1,6 +1,6 @@
 import {getField, updateField} from "vuex-map-fields"
 export const state = () => ({
-    title: `Sin titulo vuex`,
+    title: `Sin titulo`,
     menu: [],
     loaded: false,
 })
