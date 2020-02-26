@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="$emit('choose', course)">
     <div
       class="course__box"
       :style="'background-color:' + course.color"

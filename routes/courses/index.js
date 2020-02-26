@@ -9,5 +9,6 @@ router.use(authedUser)
 
 router.get(`/`, controller.getCourses)
 router.post(`/`, courseCreation, controller.postCourse)
+router.put(`/:id`, courseCreation, controller.updateCourse)
 
 module.exports = router

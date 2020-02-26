@@ -9,6 +9,7 @@
         v-for="course in items"
         :key="course._id"
         :course="course"
+        @choose="subject => $emit('input', subject._id)"
       />
     </div>
     <add-course
@@ -20,12 +21,12 @@
 <script>
 import {mapActions, mapState} from "vuex"
 import CourseItem from './course-item'
-import AddCourse from './add-course'
+import AddCourse from './editor-course'
 export default {
     components: {CourseItem, AddCourse},
     data() {
         return {
-            addingCourse: true,
+            addingCourse: false,
         }
     },
     computed: {

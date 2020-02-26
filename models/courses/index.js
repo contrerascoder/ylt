@@ -24,4 +24,9 @@ module.exports = {
     async getCourses(user) {
         return await model.find({user})
     },
+    async updateCourse({title, abbr, color}, courseId) {
+        const data = {title, abbr, color}
+        await model.findByIdAndUpdate(courseId, {$set: data})
+        return model.findById(courseId)
+    },
 }

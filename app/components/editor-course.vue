@@ -1,6 +1,6 @@
 <template>
   <modal-box
-    title="Añadir un curso"
+    :title="editing ? 'Actualizando curso' : 'Añadir un curso'"
     :activated="activated"
     @close="$emit('close')"
   >
@@ -33,9 +33,14 @@ export default {
             type: Boolean,
             default: false,
         },
+        course: {
+            type: Object,
+            default: null,
+        },
     },
     data() {
         return {
+            editing: false,
             fields: {
                 title: {
                     hint: `Pon un titulo para el curso`,
@@ -65,17 +70,29 @@ export default {
                 abbr: this.fields.abbr.value,
                 color: this.fields.color.value,
             }
-            return {
+            return this.editing ? {
+                method: `put`,
+                url: `/courses/` + this.course._id,
+                data: data,
+            } : {
                 method: `post`,
                 url: `/courses`,
                 data: data,
             }
         },
     },
+    mounted() {
+        if (this.course) {
+            this.fields.title.value = this.course.title
+            this.fields.abbr.value = this.course.abbr
+            this.fields.color.value = this.course.color
+            this.editing = true
+        }
+    },
     methods: {
-        ...mapMutations(`courses`, [`add`]),
+        ...mapMutations(`courses`, [`set`]),
         postSuccess(course) {
-            this.add(course)
+            this.set({id: this.course._id, course})
             this.$emit(`close`)
         },
     },

@@ -11,6 +11,14 @@ export const mutations = {
     add(state, course) {
         state.items.push(course)
     },
+    set(state, {id, course}) {
+        const courseQueried = state.items.filter((course) => course._id === id)[0]
+        const index = state.items.indexOf(courseQueried)
+        state.items[index] = {
+            ...courseQueried,
+            ...course,
+        }
+    },
 }
 
 export const actions = {
