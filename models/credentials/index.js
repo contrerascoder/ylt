@@ -16,7 +16,7 @@ module.exports = {
     async activateAccount(uuid) {
         await model.findOneAndUpdate({uuid: uuid}, {activated: true})
     },
-    async register({name, surname, password, email}, {hostname}) {
+    async register({name, surname, password, email}, {hostname} = {}) {
         const user = await searchUserByEmail(email)
         if (user) {
             throw new Error(`El email ya está registrado`)
@@ -25,8 +25,10 @@ module.exports = {
             email: email,
             password: await hashPassword(password),
         })
-        const html = `Para activar tu cuenta tienes que hacer click <a href="http://${hostname}:${PORT}/api/auth/activate/${credentials.uuid}">aqui</a>`
-        await sendMail(credentials.email, `Activa tu cuenta`, html)
+        if (hostname) {
+            const html = `Para activar tu cuenta tienes que hacer click <a href="http://${hostname}:${PORT}/api/auth/activate/${credentials.uuid}">aqui</a>`
+            await sendMail(credentials.email, `Activa tu cuenta`, html)
+        }
         return await require(`../user/`).model.create({
             name: name,
             surname: surname,
