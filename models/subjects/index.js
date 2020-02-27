@@ -19,9 +19,15 @@ module.exports = {
         if (unit !== null) {
             throw new Error(`Ya existe una asignatura con el mismo titulo`)
         }
+
         return await model.create({title, abbr, color, course})
     },
     async getSubjects(course) {
         return await model.find({course: course})
+    },
+    async updateSubject({title, abbr, color}, unitId) {
+        const data = {title, abbr, color}
+        await model.findByIdAndUpdate(unitId, {$set: data})
+        return model.findById(unitId)
     },
 }

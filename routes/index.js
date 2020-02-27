@@ -11,5 +11,6 @@ router.use(`/auth`, require(`./auth`))
 // router.use(`/chat`, require(`./chat`))
 router.use(`/user`, require(`./user`))
 router.use(`/courses`, require(`./courses`))
+router.use(`/subjects`, require(`./subjects`))
 
 module.exports = router
