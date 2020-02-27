@@ -9,10 +9,14 @@
       @success="postSuccess"
       @notvalid="printErrors"
     >
-      <p>Pon un titulo para la asignatura</p>
-      <form-field v-model="fields.title.value" />
-      <p>Pon una abreviatura</p>
-      <form-field v-model="fields.abbr.value" />
+      <form-field
+        v-model="fields.title.value"
+        :payload="fields.title"
+      />
+      <form-field
+        v-model="fields.abbr.value"
+        :payload="fields.abbr"
+      />
       <p>Pon un color para la asignatura</p>
       <input
         v-model="fields.color.value"
@@ -43,13 +47,13 @@ export default {
             editing: false,
             fields: {
                 title: {
-                    hint: `Pon un titulo para la asignatura`,
+                    hint: `Escribe el titulo`,
                     value: ``,
                     error: ``,
                     type: `text`,
                 },
                 abbr: {
-                    hint: `Pon una abreviatura para la asignatura`,
+                    hint: `Escribe la asignatura`,
                     value: ``,
                     error: ``,
                     type: `text`,

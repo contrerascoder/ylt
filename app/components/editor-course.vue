@@ -9,15 +9,24 @@
       @success="postSuccess"
       @notvalid="printErrors"
     >
-      <p>Pon un titulo para el curso</p>
-      <form-field v-model="fields.title.value" />
-      <p>Pon una abreviatura</p>
-      <form-field v-model="fields.abbr.value" />
-      <p>Pon un color para el curso</p>
+      <form-field
+        v-model="fields.title.value"
+        :payload="fields.title"
+      />
+      <form-field
+        v-model="fields.abbr.value"
+        :payload="fields.abbr"
+      />
+      <p>
+        {{ fields.color.hint }}
+      </p>
       <input
         v-model="fields.color.value"
         type="color"
       >
+      <p v-if="fields.color.error">
+        {{ fields.color.error }}
+      </p>
     </vue-form>
   </modal-box>
 </template>
