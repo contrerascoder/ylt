@@ -2,3 +2,4 @@ dist
 logs
 test
 tests
+node_modules/**/*

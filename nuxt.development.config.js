@@ -30,6 +30,7 @@ module.exports = {
         `~/plugins/axios.js`,
         `~/plugins/injectEnv.js`,
         // {src: `~/plugins/socket.js`, ssr: false},
+        {src: `~/plugins/editorjs/index.js`, ssr: false},
         {src: `~/plugins/localstorage.js`, ssr: false},
     ],
 }

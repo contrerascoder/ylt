@@ -47,12 +47,14 @@
     "socket.io": "^2.3.0",
     "uuid": "^3.4.0",
     "vue-cropperjs": "^4.0.1",
+    "vue-editor-js": "^1.1.1",
     "vue-spinner": "^1.0.3",
     "vuex-map-fields": "^1.4.0",
     "vuex-persistedstate": "^2.7.1",
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@editorjs/paragraph": "^2.6.1",
     "babel-eslint": "^10.0.3",
     "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
