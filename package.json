@@ -7,7 +7,8 @@
     "lint": "eslint --ext js --ext vue .",
     "dev:server": "nodemon bin/www",
     "dev:front": "nuxt dev",
-    "dev": "concurrently 'npm run dev:server' 'npm run dev:front'"
+    "dev": "concurrently 'npm run dev:server' 'npm run dev:front'",
+    "start": "node bin/www"
   },
   "husky": {
     "hooks": {
