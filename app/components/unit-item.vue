@@ -12,17 +12,17 @@
     <div class="controls">
       <span @click="editing=true"><i class="fas fa-edit" /></span>
     </div>
-    <!--edit-unit
+    <edit-unit
       :activated="editing"
       :unit="unit"
       @close="editing=false"
-    /-->
+    />
   </div>
 </template>
 <script>
-// import EditUnit from './editor-unit'
+import EditUnit from './editor-unit'
 export default {
-    // components: {EditUnit},
+    components: {EditUnit},
     props: {
         unit: {
             type: Object,

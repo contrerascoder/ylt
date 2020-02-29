@@ -28,7 +28,7 @@ export default {
             type: Boolean,
             default: false,
         },
-        subject: {
+        unit: {
             type: Object,
             default: null,
         },
@@ -66,7 +66,7 @@ export default {
             }
             return this.editing ? {
                 method: `put`,
-                url: `/subjects/` + this.subject._id,
+                url: `/units/` + this.unit._id,
                 data: data,
             } : {
                 method: `post`,
@@ -76,10 +76,8 @@ export default {
         },
     },
     mounted() {
-        if (this.subject) {
-            this.fields.title.value = this.subject.title
-            this.fields.abbr.value = this.subject.abbr
-            this.fields.color.value = this.subject.color
+        if (this.unit) {
+            this.fields.title.value = this.unit.title
             this.editing = true
         }
     },
