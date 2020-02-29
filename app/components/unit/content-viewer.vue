@@ -36,8 +36,12 @@
         Ver nota
       </button>
       <div v-if="mode==='study'">
-        <button>Adelante</button>
-        <button>Atras</button>
+        <button @click="forward">
+          Adelante
+        </button>
+        <button @click="backward">
+          Atras
+        </button>
       </div>
     </div>
   </div>
