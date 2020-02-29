@@ -15,5 +15,9 @@
         "javascript",
         "javascriptreact"
     ],
-    "debug.node.autoAttach": "on"
+    "debug.node.autoAttach": "on",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
 }

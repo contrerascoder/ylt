@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>Vista de una unidad {{ $route.params.subject }}</p>
     <unit-list />
   </div>
 </template>
