@@ -1,8 +1,23 @@
 <template>
   <div
     ref="viewer"
-    class="viewer"
+    class="viewer content"
   >
+    <div class="header">
+      <button @click="mode = 'study'">
+        Ver
+      </button>
+      <button @click="mode = 'exam'">
+        Examinarse
+      </button>
+    </div>
+    <p
+      v-if="note"
+      class="note"
+      @click="note=false"
+    >
+      Has sacado un {{ note }}
+    </p>
     <div
       v-for="(block, index) in blocks"
       :key="index"
@@ -10,15 +25,21 @@
       <div
         :is="`${block.type}-block`"
         :content="block.data"
-        :mode="'exam'"
+        :mode="mode"
       />
     </div>
-    <button @click="calcNote">
-      Ver nota
-    </button>
-    <p v-if="note">
-      Has sacado un {{ note }}
-    </p>
+    <div class="footer">
+      <button
+        v-if="mode==='exam'"
+        @click="calcNote"
+      >
+        Ver nota
+      </button>
+      <div v-if="mode==='study'">
+        <button>Adelante</button>
+        <button>Atras</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,6 +60,7 @@ export default {
     },
     data() {
         return {
+            mode: `study`,
             note: false,
         }
     },
@@ -106,5 +128,34 @@ export default {
 .viewer {
     max-width: 768px;
     margin: 0 auto;
+}
+.header {
+  display: flex;
+  justify-content: space-around;
+}
+.footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    background: lightgrey;
+}
+.content {
+    padding-bottom: 20px;
+}
+.note {
+    font-size: 18px;
+    font-weight: bold;
+    position: fixed;
+    top: 30px;
+    background: steelblue;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.4em;
+    width: 70%;
+    text-align: center;
+    box-sizing: border-box;
 }
 </style>

@@ -76,11 +76,11 @@ p {
             font-weight: bold;
             color: rgba(255, 255, 255, 0);
             text-decoration: underline;
-            text-decoration-color: tomato;
+            text-decoration-color: steelblue;
             transition: all .3s;
             &.active {
                 opacity: 1;
-                color: tomato;
+                color: steelblue;
             }
         }
     }

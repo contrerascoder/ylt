@@ -25,19 +25,14 @@ export default {
             contentEditor: null,
         }
     },
-    watch: {
-        contentEditor(newv, oldv) {
-            // console.log(JSON.stringify(newv))
-        },
-    },
     mounted() {
-        this.configBar(`Pagina de testing`, [
+        this.configBar(`Pagina demo`, [
             {handler: this.logout, text: `Cerrar sesion`},
         ])
     },
     head() {
         return {
-            title: `Pagina de testing`,
+            title: `Pagina demo`,
         }
     },
 }
