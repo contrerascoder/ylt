@@ -9,7 +9,7 @@
         :title="subject.title"
         class="subject__title"
       >
-        <nuxt-link :to="'/private/' + subject._id">
+        <nuxt-link :to="'/private/subject/' + subject._id">
           {{ subject.abbr }}
         </nuxt-link>
       </h4>

@@ -34,6 +34,7 @@
         "max-len": "off",
         "no-undef": ["error"],
         "linebreak-style": "off",
+        "vue/no-v-html": "off",
         "require-jsdoc": 0
     },
     "settings": {
