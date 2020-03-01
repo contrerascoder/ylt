@@ -1,6 +1,6 @@
 const express = require(`express`) // eslint-disable-line
 const logger = require(`../../utilities/logger`)
-const {getUnits, createUnit, updateUnit} = require(`../../models/units`)
+const {getUnits, createUnit, updateUnit, getUnit} = require(`../../models/units`)
 module.exports = {
     /**
     * @param {express.request} req
@@ -45,4 +45,19 @@ module.exports = {
             res.status(400).end(error.message)
         }
     },
+
+    /**
+    * @param {express.request} req
+    * @param {express.response} res
+    */
+    async getUnit(req, res) {
+        try {
+            const units = await getUnit(req.params.id)
+            res.status(200).json({units: units})
+        } catch (error) {
+            logger.log(error)
+            logger.info(`Sucedio un error inesperado ${error.message}`)
+        }
+    },
+
 }

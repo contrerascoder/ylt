@@ -5,8 +5,12 @@ const blockModel = require(`../blocks`).model
 const model = require(`..`)(modelName, {
     title: {type: String},
     number: {type: Number},
+    blocks: {
+        ref: `blocks`,
+        type: objectId,
+    },
     unit: {
-        ref: require(`../units`).modelName,
+        ref: `pages`,
         type: objectId,
     },
 })

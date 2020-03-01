@@ -3,6 +3,10 @@ const modelName = `units`
 
 const model = require(`..`)(modelName, {
     title: {type: String},
+    pages: [{
+        ref: `pages`,
+        type: objectId,
+    }],
     subject: {
         ref: require(`../subjects`).modelName,
         type: objectId,
@@ -26,5 +30,24 @@ module.exports = {
         const data = {title, abbr, color}
         await model.findByIdAndUpdate(unitId, {$set: data})
         return model.findById(unitId)
+    },
+    async getUnit(id) {
+        return await model.findById(id).populate({
+            path: `pages`,
+        })
+        /* console.log(unit)
+
+        const pages = await pagesApi.model.find({unit})
+        for (let index = 0; index < pages.length; index++) {
+            const page = Object.assign({}, pages[index])
+            const blocksItems = await blocks.model.find({page: pages[index]})
+            pages[index] = Object.assign({}, {
+                ...page,
+                blocks: blocksItems,
+            })
+        }
+        return {
+            ...unit,
+        }*/
     },
 }
