@@ -1,9 +1,14 @@
 require(`../utilities/connect-to-db`)(init, error)
+const {getUnit} = require('../models/units')
 
 async function init() {
     console.log(`se conecto a la bse de datos`)
     // await normalizeUnits()
     //await normalizePages()
+    const data = await getUnit("5e564849e63afc32be97d8d2")
+    console.log(data);
+    console.log(data.blocks['5e564d7b853e683af819424f'][0]);
+    
     process.exit(0)
 }
 

@@ -1,5 +1,7 @@
 const objectId = require(`mongoose`).Types.ObjectId
 const modelName = `units`
+const pagesModel = require(`../pages`).model
+const blocks = require(`../blocks`).model
 
 const model = require(`..`)(modelName, {
     title: {type: String},
@@ -32,9 +34,17 @@ module.exports = {
         return model.findById(unitId)
     },
     async getUnit(id) {
-        return await model.findById(id).populate({
-            path: `pages`,
-        })
+        const unit = await model.findById(id)
+        const pages = await pagesModel.find({unit})
+        const blocks = {}
+        for (let index = 0; index < pages.length; index++) {
+            const pagee = pages[index]
+            if (!blocks[pagee._id]) {
+                blocks[pagee._id] = []
+            }
+            blocks[pagee._id].push(await require(`../blocks/`).model.find({page: pagee}))
+        }
+        return {unit, pages, blocks}
         /* console.log(unit)
 
         const pages = await pagesApi.model.find({unit})
