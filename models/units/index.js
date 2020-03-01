@@ -1,7 +1,6 @@
 const objectId = require(`mongoose`).Types.ObjectId
 const modelName = `units`
 const pagesModel = require(`../pages`).model
-const blocks = require(`../blocks`).model
 
 const model = require(`..`)(modelName, {
     title: {type: String},
