@@ -22,8 +22,8 @@ const editorConfig = {
 export default {
     props: {
         initialContent: {
-            type: Object,
-            default: () => ({}),
+            type: String,
+            default: ``,
         },
     },
     data() {
@@ -31,9 +31,10 @@ export default {
             config: this.$configeditor,
         }
     },
-    mounted() {
+    async mounted() {
         const self = this
         this.editor = new EditorJS(Object.assign({}, editorConfig, {
+            data: JSON.parse(this.initialContent),
             async onChange() {
                 try {
                     const content = await self.editor.save()

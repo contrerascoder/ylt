@@ -4,7 +4,7 @@
       <h4
         class="unit__title"
       >
-        <nuxt-link :to="'/private/unit/' + unit._id">
+        <nuxt-link :to="'/private/units/' + unit._id">
           {{ unit.title }}
         </nuxt-link>
       </h4>

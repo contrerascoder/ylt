@@ -52,8 +52,8 @@ module.exports = {
     */
     async getUnit(req, res) {
         try {
-            const units = await getUnit(req.params.id)
-            res.status(200).json({units: units})
+            const unit = await getUnit(req.params.id)
+            res.status(200).json(unit)
         } catch (error) {
             logger.log(error)
             logger.info(`Sucedio un error inesperado ${error.message}`)

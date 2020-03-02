@@ -156,7 +156,11 @@ input[type="text"], textarea {
         text-decoration: none;
     }
     &__title {
+        display: flex;
+        align-items: center;
+        font-size: 1.4em;
         & > a {
+            font-size: 1.6em;
         color: black;
         text-decoration: none;
         }

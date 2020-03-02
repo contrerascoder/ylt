@@ -38,25 +38,8 @@ module.exports = {
         const blocks = {}
         for (let index = 0; index < pages.length; index++) {
             const pagee = pages[index]
-            if (!blocks[pagee._id]) {
-                blocks[pagee._id] = []
-            }
-            blocks[pagee._id].push(await require(`../blocks/`).model.find({page: pagee}))
+            blocks[pagee._id] = await require(`../blocks/`).model.find({page: pagee})
         }
         return {unit, pages, blocks}
-        /* console.log(unit)
-
-        const pages = await pagesApi.model.find({unit})
-        for (let index = 0; index < pages.length; index++) {
-            const page = Object.assign({}, pages[index])
-            const blocksItems = await blocks.model.find({page: pages[index]})
-            pages[index] = Object.assign({}, {
-                ...page,
-                blocks: blocksItems,
-            })
-        }
-        return {
-            ...unit,
-        }*/
     },
 }
