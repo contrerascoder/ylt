@@ -15,7 +15,13 @@
       />
     </template>
     <template v-else>
-      <p>Estudiando</p>
+      <content-viewer
+        v-if="studyContent"
+        ref="studyContainer"
+        :content="studyContent"
+        @nextPage="forwardPage"
+        @previousPage="previousPage"
+      />
     </template>
     <template v-if="showingUnits">
       <div class="modal">
@@ -39,9 +45,25 @@
     </template>
     <div class="bottom-toolbar">
       <div>
-        <span @click="setPage(Math.max(0, currentPage - 1))"><i class="fas fa-arrow-left" /></span>
+        <span
+          v-if="mode === 'editing'"
+          @click="setPage(Math.max(0, currentPage - 1))"
+        ><i class="fas fa-arrow-left" /></span>
+        <span
+          v-else
+          @click="$refs['studyContainer'].backward()"
+        ><i class="fas fa-arrow-left" /></span>
+
         <span @click="showingUnits = true"><i class="fas fa-bars" /></span>
-        <span @click="setPage(Math.min(currentPage + 1, unitData.pages.length))"><i class="fas fa-arrow-right" /></span>
+
+        <span
+          v-if="mode === 'editing'"
+          @click="setPage(Math.min(currentPage + 1, unitData.pages.length))"
+        ><i class="fas fa-arrow-right" /></span>
+        <span
+          v-else
+          @click="$refs['studyContainer'].forward()"
+        ><i class="fas fa-arrow-right" /></span>
       </div>
       <div>
         <span><i class="fas fa-plus-square" /></span>
@@ -51,10 +73,12 @@
 </template>
 
 <script>
+import ContentViewer from "@/components/unit/content-viewer"
 export default {
+    components: {ContentViewer},
     data() {
         return {
-            mode: `editing`,
+            mode: `study`,
             showingUnits: false,
             notUpdate: false,
             unitData: {
@@ -84,6 +108,13 @@ export default {
                 this.unitData.pages[this.currentPage].title = value
             },
         },
+        studyContent() {
+            if (this.unitData.pages.length === 0) {
+                return
+            }
+            const pageId = this.unitData.pages[this.currentPage]._id
+            return this.unitData.blocks[pageId]
+        },
     },
     watch: {
         async 'unitContent.contentEditor'(newv, oldv) {
@@ -100,6 +131,7 @@ export default {
         },
     },
     async mounted() {
+        const self = this
         const unitReq = await this.$api.get(`/units/` + this.$route.params.unit)
         this.unitData.title = unitReq.data.unit.title
         this.unitData.pages = unitReq.data.pages
@@ -110,14 +142,25 @@ export default {
         })
         this.unitContent.initalContent = content
         const changeMode = this.editing ?
-            {handler: this.view, text: `Modo estudio`} :
-            {handler: this.edit, text: `Modo editar`}
+            {handler: () => self.mode = `study`, text: `Modo estudio`} :
+            {handler: () => self.mode = `editing`, text: `Modo editar`}
         this.configBar(this.unitData.title, [
             {handler: this.logout, text: `Cerrar sesion`},
             changeMode,
         ])
     },
     methods: {
+        // Estos dos metodos solo se usan en modo estudio
+        forwardPage() {
+            this.currentPage += 1
+        },
+        previousPage() {
+            this.currentPage -= 1
+            setTimeout(() => {
+                this.$refs[`studyContainer`].showAll()
+            }, 100)
+        },
+        // Este metodo solo se usa en modo edicion
         setPage(index) {
             this.unitContent.initalContent = ``
             this.currentPage = index

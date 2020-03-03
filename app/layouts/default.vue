@@ -125,6 +125,7 @@ input[type="text"], textarea {
         align-items: center;
         flex-direction: column;
         @media screen and (max-width: 425px) {
+            z-index: 500000;
             position: absolute;
             top: -100vh;
             right: 0px;

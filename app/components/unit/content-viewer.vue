@@ -58,8 +58,8 @@ export default {
     components: {ParagraphBlock},
     props: {
         content: {
-            type: Object,
-            default: () => ({}),
+            type: Array,
+            default: () => ([]),
         },
     },
     data() {
@@ -70,7 +70,7 @@ export default {
     },
     computed: {
         blocks() {
-            return this.content.blocks
+            return this.content
         },
     },
     mounted() {
@@ -88,7 +88,7 @@ export default {
             if (b) {
                 b.classList.add(`active`)
             } else {
-                // pasar pagina
+                this.$emit(`nextPage`)
             }
         },
         backward() {
@@ -97,7 +97,14 @@ export default {
             if (b) {
                 b.classList.remove(`active`)
             } else {
-                // atrasar pagina
+                this.$emit(`previousPage`)
+            }
+        },
+        showAll() {
+            const bs = this.$refs.viewer.querySelectorAll(`.wb:not(.active)`)
+            for (let index = 0; index < bs.length; index++) {
+                const b = bs[index]
+                b.classList.add(`active`)
             }
         },
         calcNote() {
