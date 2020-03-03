@@ -9,6 +9,7 @@
       >
       <editor-js
         v-if="unitContent.initalContent"
+        ref="editor"
         v-model="unitContent.contentEditor"
         :initial-content="unitContent.initalContent"
       />
@@ -38,9 +39,9 @@
     </template>
     <div class="bottom-toolbar">
       <div>
-        <span><i class="fas fa-arrow-left" /></span>
+        <span @click="setPage(Math.max(0, currentPage - 1))"><i class="fas fa-arrow-left" /></span>
         <span @click="showingUnits = true"><i class="fas fa-bars" /></span>
-        <span><i class="fas fa-arrow-right" /></span>
+        <span @click="setPage(Math.min(currentPage + 1, unitData.pages.length))"><i class="fas fa-arrow-right" /></span>
       </div>
       <div>
         <span><i class="fas fa-plus-square" /></span>
@@ -55,6 +56,7 @@ export default {
         return {
             mode: `editing`,
             showingUnits: false,
+            notUpdate: false,
             unitData: {
                 title: ``,
                 pages: [],
@@ -84,12 +86,17 @@ export default {
         },
     },
     watch: {
-        'unitContent.contentEditor'(newv, oldv) {
-            /* const data = {
-                blocks: newv,
+        async 'unitContent.contentEditor'(newv, oldv) {
+            if (typeof newv === `string`) {
+                return
+            }
+            const currentPageId = this.unitData.pages[this.currentPage]._id
+            const unit = {
                 title: this.currentTitle,
-            }*/
-            // console.log(`contenido cambiado`, data)
+                blocks: newv,
+                currentPage: currentPageId,
+            }
+            await this.$api.put(`/units/` + this.$route.params.unit, unit)
         },
     },
     async mounted() {
@@ -112,8 +119,17 @@ export default {
     },
     methods: {
         setPage(index) {
+            this.unitContent.initalContent = ``
             this.currentPage = index
-            this.showingUnits = false
+            const pageId = this.unitData.pages[this.currentPage]._id
+            const content = JSON.stringify({
+                blocks: this.unitData.blocks[pageId],
+            })
+            const self = this
+            setTimeout(() => {
+                self.unitContent.initalContent = content
+                self.showingUnits = false
+            }, 300)
         },
         getAllBlocks(blocks) {
             const listBlocks = []
@@ -151,6 +167,10 @@ export default {
   .unit {
     font-size: 1.3em;
     cursor: pointer;
+    border-bottom: 1px black dotted;
+    &:last-child {
+      border: 0px;
+    }
   }
 }
 .modal {

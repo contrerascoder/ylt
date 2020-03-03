@@ -27,9 +27,18 @@ module.exports = {
     async getUnits(subject) {
         return await model.find({subject: subject})
     },
-    async updateUnit({title, abbr, color}, unitId) {
-        const data = {title, abbr, color}
-        await model.findByIdAndUpdate(unitId, {$set: data})
+    async updateUnit({title, blocks: {blocks}, currentPage}, unitId) {
+        await require(`../pages/`).model.updateOne({_id: currentPage}, {
+            $set: {title: title},
+        })
+        await require(`../blocks`).model.deleteMany({page: currentPage})
+        for (let index = 0; index < blocks.length; index++) {
+            const block = blocks[index]
+            await require(`../blocks`).model.create({
+                ...block,
+                page: currentPage,
+            })
+        }
         return model.findById(unitId)
     },
     async getUnit(id) {

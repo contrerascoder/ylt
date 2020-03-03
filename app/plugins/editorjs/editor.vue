@@ -28,12 +28,13 @@ export default {
     },
     data() {
         return {
+            editor: null,
             config: this.$configeditor,
         }
     },
     async mounted() {
         const self = this
-        this.editor = new EditorJS(Object.assign({}, editorConfig, {
+        const customconfig = {
             data: JSON.parse(this.initialContent),
             async onChange() {
                 try {
@@ -42,7 +43,12 @@ export default {
                 } catch (error) {
                 }
             },
-        }))
+        }
+        this.editor = new EditorJS(Object.assign({}, editorConfig, customconfig))
+    },
+    beforeDestroy() {
+        // console.log(`destruyendo editor`)
+        // this.editor.destroy()
     },
     methods: {
         async onChange(e) {
