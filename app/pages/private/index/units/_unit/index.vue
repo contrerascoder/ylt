@@ -64,7 +64,7 @@ export default {
                 contentEditor: ``,
                 initalContent: ``,
             },
-            currentPage: 2,
+            currentPage: 0,
         }
     },
     computed: {
@@ -99,14 +99,7 @@ export default {
         this.unitData.blocks = unitReq.data.blocks
         const pageId = this.unitData.pages[this.currentPage]._id
         const content = JSON.stringify({
-            blocks: this.unitData.blocks[pageId].map((data) => {
-                return {
-                    type: `paragraph`,
-                    data: {
-                        text: data.content,
-                    },
-                }
-            }),
+            blocks: this.unitData.blocks[pageId],
         })
         this.unitContent.initalContent = content
         const changeMode = this.editing ?

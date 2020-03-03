@@ -4,9 +4,8 @@ const modelName = `blocks`
 const modelPageName = `pages`
 
 const model = require(`..`)(modelName, {
-    number: {type: Number},
     type: {type: String},
-    content: {type: String},
+    data: {type: Object},
     page: {
         ref: modelPageName,
         type: objectId,

@@ -34,7 +34,7 @@ module.exports = {
     },
     async getUnit(id) {
         const unit = await model.findById(id)
-        const pages = await pagesModel.find({unit})
+        const pages = await pagesModel.find({unit}).sort(`number`)
         const blocks = {}
         for (let index = 0; index < pages.length; index++) {
             const pagee = pages[index]

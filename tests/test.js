@@ -1,13 +1,27 @@
 require(`../utilities/connect-to-db`)(init, error)
 const {getUnit} = require('../models/units')
+const {model} = require('../models/blocks')
+const {model: pagesModel} = require('../models/pages/')
+
+// pageId -> 5e564d7b853e683af819424f
 
 async function init() {
     console.log(`se conecto a la bse de datos`)
     // await normalizeUnits()
     //await normalizePages()
-    const data = await getUnit("5e564849e63afc32be97d8d2")
+    /*const data = await getUnit("5e564849e63afc32be97d8d2")
     console.log(data);
-    console.log(data.blocks['5e564d7b853e683af819424f'][0]);
+    console.log(data.blocks['5e564d7b853e683af819424f'][0]);*/
+
+    const {pageAllBlocks} = require('../backup.json')
+    const blocks = await model.find({})
+    
+    for (let index = 0; index < blocks.length; index++) {
+        const block = blocks[index];
+        await model.findByIdAndUpdate(block._id, {
+            $set: {page: pageAllBlocks}
+        })
+    }
     
     process.exit(0)
 }
