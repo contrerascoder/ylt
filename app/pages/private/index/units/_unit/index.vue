@@ -66,7 +66,11 @@
         ><i class="fas fa-arrow-right" /></span>
       </div>
       <div>
-        <span><i class="fas fa-plus-square" /></span>
+        <span v-if="mode === 'editing'"><i class="fas fa-plus-square" /></span>
+        <span
+          v-else
+          @click="$refs['studyContainer'].calcNote()"
+        ><i class="fas fa-check" /></span>
       </div>
     </div>
   </authed-user>
