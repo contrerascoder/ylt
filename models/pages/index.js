@@ -40,4 +40,14 @@ module.exports = {
         page.title = title
         return page
     },
+    async addPage(page, unitId) {
+        await model.updateMany({
+            number: {$gte: page.number},
+            unit: unitId,
+        }, {
+            $inc: {number: 1},
+        })
+
+        return await model.create({...page, unit: unitId})
+    },
 }

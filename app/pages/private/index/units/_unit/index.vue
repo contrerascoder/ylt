@@ -66,7 +66,10 @@
         ><i class="fas fa-arrow-right" /></span>
       </div>
       <div>
-        <span v-if="mode === 'editing'"><i class="fas fa-plus-square" /></span>
+        <span
+          v-if="mode === 'editing'"
+          @click="addPage"
+        ><i class="fas fa-plus-square" /></span>
         <span
           v-else
           @click="$refs['studyContainer'].calcNote()"
@@ -82,7 +85,7 @@ export default {
     components: {ContentViewer},
     data() {
         return {
-            mode: `study`,
+            mode: `editing`,
             showingUnits: false,
             notUpdate: false,
             unitData: {
@@ -161,6 +164,12 @@ export default {
             }
             this.currentPage += 1
         },
+        async addPage() {
+            const number = Number(this.unitData.pages[this.currentPage].number) + 1
+            const req = await this.$api.post(`/units/page/` + this.$route.params.unit + `?number=` + number)
+            this.unitData.pages.splice(this.currentPage + 1, 0, req.data)
+            this.setPage(this.currentPage + 1)
+        },
         previousPage() {
             if (this.currentPage === 0) {
                 return
@@ -172,9 +181,19 @@ export default {
         },
         // Este metodo solo se usa en modo edicion
         setPage(index) {
+            const totalPages = this.unitData.pages.length
             this.unitContent.initalContent = ``
             this.currentPage = index
-            const pageId = this.unitData.pages[this.currentPage]._id
+            const page = this.unitData.pages[this.currentPage]
+            if (!page) {
+                if (this.currentPage < 0) {
+                    this.currentPage = 0
+                } else if (this.currentPage > totalPages - 1) {
+                    this.currentPage = totalPages - 1
+                }
+                return
+            }
+            const pageId = page._id
             const content = JSON.stringify({
                 blocks: this.unitData.blocks[pageId],
             })

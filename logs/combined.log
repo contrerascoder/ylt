@@ -1040,3 +1040,49 @@
 {"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
 {"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
 {"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Sucedio un error inesperado No has especificado la página","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Sucedio un error inesperado Cast to number failed for value \"undefined\" at path \"number\" for model \"pages\"","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Sucedio un error inesperado Cast to number failed for value \"undefined\" at path \"number\" for model \"pages\"","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Sucedio un error inesperado Cast to number failed for value \"NaN\" at path \"number\" for model \"pages\"","level":"info"}
+{"message":"Sucedio un error inesperado Cast to number failed for value \"NaN\" at path \"number\" for model \"pages\"","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}
+{"message":"Sucedio un error inesperado Cast to ObjectId failed for value \"undefined\" at path \"unit\" for model \"pages\"","level":"info"}
+{"message":"Se pudo conectar correctamente a la base de datos: mongodb://localhost:27017/YLT","level":"info"}
+{"message":"Escuchando por el puerto 8080","level":"info"}

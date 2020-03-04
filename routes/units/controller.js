@@ -1,6 +1,7 @@
 const express = require(`express`) // eslint-disable-line
 const logger = require(`../../utilities/logger`)
 const {getUnits, createUnit, updateUnit, getUnit} = require(`../../models/units`)
+const {addPage} = require(`../../models/pages/`)
 module.exports = {
     /**
     * @param {express.request} req
@@ -60,4 +61,25 @@ module.exports = {
         }
     },
 
+    /**
+    * @param {express.request} req
+    * @param {express.response} res
+    */
+    async addPage(req, res) {
+        try {
+            if (!req.query.number) {
+                throw new Error(`No has especificado la página`)
+            }
+            const pageData = {
+                title: `nueva pagina`,
+                number: Number(req.query.number),
+            }
+            const newPage = await addPage(pageData, req.params.unit)
+            return res.status(201).json(newPage)
+        } catch (error) {
+            logger.log(error)
+            logger.info(`Sucedio un error inesperado ${error.message}`)
+            res.status(400).end(error.message)
+        }
+    },
 }

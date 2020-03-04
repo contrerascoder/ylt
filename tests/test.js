@@ -13,16 +13,33 @@ async function init() {
     console.log(data);
     console.log(data.blocks['5e564d7b853e683af819424f'][0]);*/
 
-    const pages = await pagesModel.updateMany({
-        number: {$gte: 1},
-        unit: "5e564849e63afc32be97d8d2"
-    }, {
-        $inc: {number: 1}
-    })
-    console.log(pages);
+    /*const pageData = {
+        number: 2,
+        title: 'Se ha metido la pagina número 2'
+    }
+    const newPage = await addPage(pageData, "5e564849e63afc32be97d8d2")
+    console.log(newPage);*/
+
+    const pages = await pagesModel.find({}).sort('number')
+    console.table(pages.map(page => ({
+        title: page.title,
+        number: page.number,
+        id: page._id
+    })));
     
 
     process.exit(0)
+}
+
+async function addPage(page, unitId) {
+    const pages = await pagesModel.updateMany({
+        number: {$gte: page.number},
+        unit: unitId
+    }, {
+        $inc: {number: 1}
+    })
+
+    return await pagesModel.create({...page, unit: unitId})
 }
 
 function error(err) {

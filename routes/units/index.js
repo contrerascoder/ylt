@@ -9,5 +9,6 @@ router.get(`/`, controller.getUnits)
 router.post(`/`, controller.postUnit)
 router.get(`/:id`, controller.getUnit)
 router.put(`/:id`, controller.putUnit)
+router.post(`/page/:unit`, controller.addPage)
 
 module.exports = router
