@@ -13,16 +13,15 @@ async function init() {
     console.log(data);
     console.log(data.blocks['5e564d7b853e683af819424f'][0]);*/
 
-    const {pageAllBlocks} = require('../backup.json')
-    const blocks = await model.find({})
+    const pages = await pagesModel.updateMany({
+        number: {$gte: 1},
+        unit: "5e564849e63afc32be97d8d2"
+    }, {
+        $inc: {number: 1}
+    })
+    console.log(pages);
     
-    for (let index = 0; index < blocks.length; index++) {
-        const block = blocks[index];
-        await model.findByIdAndUpdate(block._id, {
-            $set: {page: pageAllBlocks}
-        })
-    }
-    
+
     process.exit(0)
 }
 

@@ -156,9 +156,15 @@ export default {
     methods: {
         // Estos dos metodos solo se usan en modo estudio
         forwardPage() {
+            if (this.currentPage >= (this.unitData.pages.length - 1)) {
+                return
+            }
             this.currentPage += 1
         },
         previousPage() {
+            if (this.currentPage === 0) {
+                return
+            }
             this.currentPage -= 1
             setTimeout(() => {
                 this.$refs[`studyContainer`].showAll()
